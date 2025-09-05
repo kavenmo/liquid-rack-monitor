@@ -8,35 +8,59 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* IDC Monitoring Theme - Professional Dark */
+    --background: 222 20% 8%;
+    --foreground: 210 15% 92%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 222 20% 11%;
+    --card-foreground: 210 15% 92%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 222 20% 11%;
+    --popover-foreground: 210 15% 92%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 20% 8%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 222 20% 14%;
+    --secondary-foreground: 210 15% 85%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 222 20% 14%;
+    --muted-foreground: 210 10% 60%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 217 91% 60%;
+    --accent-foreground: 222 20% 8%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 222 20% 18%;
+    --input: 222 20% 14%;
+    --ring: 217 91% 60%;
 
-    --radius: 0.5rem;
+    /* Alert System Colors */
+    --alert-critical: 0 72% 51%;     /* Red */
+    --alert-warning: 25 95% 53%;     /* Orange */
+    --alert-caution: 48 96% 53%;     /* Yellow */
+    --alert-normal: 142 76% 36%;     /* Green */
+
+    /* Monitoring Specific Colors */
+    --monitor-bg: 222 20% 8%;
+    --monitor-panel: 222 20% 11%;
+    --monitor-surface: 222 20% 14%;
+    --monitor-border: 222 20% 18%;
+    --monitor-text-primary: 210 15% 92%;
+    --monitor-text-secondary: 210 10% 70%;
+    --monitor-text-muted: 210 10% 50%;
+
+    /* Gradient Backgrounds */
+    --gradient-monitor: linear-gradient(135deg, hsl(222 20% 8%) 0%, hsl(222 25% 10%) 100%);
+    --gradient-panel: linear-gradient(135deg, hsl(222 20% 11%) 0%, hsl(222 25% 13%) 100%);
+    --gradient-surface: linear-gradient(135deg, hsl(222 20% 14%) 0%, hsl(222 25% 16%) 100%);
+
+    /* Data Flow Animation */
+    --flow-animation: flow 2s linear infinite;
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
