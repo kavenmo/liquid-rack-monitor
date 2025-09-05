@@ -4,6 +4,7 @@ import { CabinetMetrics } from '@/types/monitoring';
 import { generateMockData } from '@/utils/mockData';
 import { CabinetCard } from '@/components/monitoring/CabinetCard';
 import { ServerGrid } from '@/components/monitoring/ServerCard';
+import { Cabinet3D } from '@/components/monitoring/Cabinet3D';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, RefreshCw } from 'lucide-react';
 
@@ -96,6 +97,21 @@ const CabinetDetail = () => {
         {/* 机柜概览卡片 */}
         <div className="mb-8">
           <CabinetCard cabinet={cabinet} />
+        </div>
+
+        {/* 3D 机柜视图 */}
+        <div className="mb-8">
+          <div className="bg-monitor-surface border border-monitor-border rounded-lg p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-lg font-semibold text-monitor-text-primary">
+                3D 机柜视图
+              </h2>
+              <p className="text-sm text-monitor-text-muted">
+                实时服务器状态 | 拖拽旋转 | 滚轮缩放
+              </p>
+            </div>
+            <Cabinet3D cabinet={cabinet} />
+          </div>
         </div>
 
         {/* 服务器详细信息 */}
