@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CabinetCard } from '@/components/monitoring/CabinetCard';
 import { AlertBadge } from '@/components/monitoring/AlertIndicator';
 import { generateMockData } from '@/utils/mockData';
 import { MonitoringData, AlertLevel } from '@/types/monitoring';
-import { Monitor, RefreshCw, Server, AlertTriangle } from 'lucide-react';
+import { Monitor, RefreshCw, Server, AlertTriangle, Eye } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Index = () => {
+  const navigate = useNavigate();
   const [monitoringData, setMonitoringData] = useState<MonitoringData | null>(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
@@ -133,9 +135,21 @@ const Index = () => {
 
       {/* 主要内容区域 */}
       <div className="p-6">
-        <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
           {monitoringData.cabinets.map((cabinet) => (
-            <CabinetCard key={cabinet.id} cabinet={cabinet} />
+            <div key={cabinet.id} className="relative group">
+              <CabinetCard cabinet={cabinet} />
+              <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <Button
+                  size="sm"
+                  onClick={() => navigate(`/cabinet/${cabinet.id}`)}
+                  className="bg-primary hover:bg-primary/90 text-white shadow-lg"
+                >
+                  <Eye className="w-3 h-3 mr-1" />
+                  详细监控
+                </Button>
+              </div>
+            </div>
           ))}
         </div>
       </div>
