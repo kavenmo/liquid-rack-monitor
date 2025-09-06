@@ -8,25 +8,21 @@ interface Cabinet3DProps {
   cabinet: CabinetMetrics;
 }
 
-const alertColors = {
-  normal: '#22c55e',
-  caution: '#eab308', 
-  warning: '#f97316',
-  critical: '#ef4444'
-};
+const serverColor = '#64748b'; // 统一的服务器颜色
 
 const Server3D = ({ 
   position, 
-  alertLevel, 
-  name, 
+  server, 
   index 
 }: { 
   position: [number, number, number];
-  alertLevel: AlertLevel;
-  name: string;
+  server: any;
   index: number;
 }) => {
   const meshRef = useRef<THREE.Mesh>(null);
+  
+  // 获取服务器的温度数据（取平均值）
+  const avgTemp = server.temperaturePoints.reduce((sum: number, point: any) => sum + point.temperature, 0) / server.temperaturePoints.length;
   
   return (
     <group position={position}>
@@ -37,7 +33,7 @@ const Server3D = ({
         position={[0, 0, 0]}
       >
         <meshStandardMaterial 
-          color={alertColors[alertLevel]}
+          color={serverColor}
           metalness={0.6}
           roughness={0.4}
           transparent
@@ -54,18 +50,42 @@ const Server3D = ({
         anchorX="center"
         anchorY="middle"
       >
-        {name}
+        {server.name}
       </Text>
       
-      {/* Front panel LED indicator */}
+      {/* Temperature display on top */}
+      <Text
+        position={[0, 0.12, 0]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        fontSize={0.015}
+        color="#22c55e"
+        anchorX="center"
+        anchorY="middle"
+      >
+        {`${avgTemp.toFixed(1)}°C`}
+      </Text>
+      
+      {/* Power indicator on front */}
+      <Text
+        position={[0, 0.05, 0.31]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        fontSize={0.012}
+        color="#60a5fa"
+        anchorX="center"
+        anchorY="middle"
+      >
+        运行中
+      </Text>
+      
+      {/* Status LED - unified color */}
       <Box
         args={[0.015, 0.015, 0.015]}
         position={[0.11, 0.08, 0.31]}
       >
         <meshStandardMaterial 
-          color={alertColors[alertLevel]}
-          emissive={alertColors[alertLevel]}
-          emissiveIntensity={0.8}
+          color="#22c55e"
+          emissive="#22c55e"
+          emissiveIntensity={0.6}
         />
       </Box>
     </group>
@@ -208,12 +228,67 @@ export const Cabinet3D = ({ cabinet }: Cabinet3DProps) => {
             <Server3D
               key={server.id}
               position={[xPos, yPos, zPos]}
-              alertLevel={server.alertLevel}
-              name={server.name}
+              server={server}
               index={index}
             />
           );
         })}
+        
+        {/* Cabinet metric displays */}
+        {/* Power metrics display */}
+        <Text
+          position={[-0.8, 0.4, 0.61]}
+          fontSize={0.03}
+          color="#fbbf24"
+          anchorX="center"
+          anchorY="middle"
+        >
+          {`功率: ${cabinet.powerMetrics.power}W`}
+        </Text>
+        
+        {/* Temperature display */}
+        <Text
+          position={[0, 0.4, 0.61]}
+          fontSize={0.03}
+          color="#f87171"
+          anchorX="center"
+          anchorY="middle"
+        >
+          {`机柜温度: ${cabinet.cabinetTemperature}°C`}
+        </Text>
+        
+        {/* Liquid level display */}
+        <Text
+          position={[0.8, 0.4, 0.61]}
+          fontSize={0.03}
+          color="#3b82f6"
+          anchorX="center"
+          anchorY="middle"
+        >
+          {`液位: ${cabinet.liquidLevel}%`}
+        </Text>
+        
+        {/* Input flow rate */}
+        <Text
+          position={[-0.9, 0.3, 0.31]}
+          fontSize={0.025}
+          color="#3b82f6"
+          anchorX="center"
+          anchorY="middle"
+        >
+          {`${cabinet.inputFlow.flowRate}L/min`}
+        </Text>
+        
+        {/* Output flow rate */}
+        <Text
+          position={[0.9, 0.3, 0.31]}
+          fontSize={0.025}
+          color="#ef4444"
+          anchorX="center"
+          anchorY="middle"
+        >
+          {`${cabinet.outputFlow.flowRate}L/min`}
+        </Text>
         
         {/* Grid helper */}
         <gridHelper args={[3, 30, '#4b5563', '#374151']} position={[0, -0.31, 0]} />
