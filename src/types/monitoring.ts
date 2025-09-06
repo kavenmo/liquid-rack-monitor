@@ -10,6 +10,7 @@ export interface FlowMetrics {
   flowRate: number; // 流量 (L/min)
   pressure: number; // 压力 (kPa)
   flowSpeed: number; // 流速 (m/s)
+  temperature: number; // 温度 (°C)
 }
 
 export interface TemperaturePoint {

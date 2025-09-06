@@ -268,7 +268,7 @@ export const Cabinet3D = ({ cabinet }: Cabinet3DProps) => {
           {`液位: ${cabinet.liquidLevel}%`}
         </Text>
         
-        {/* Input flow rate */}
+        {/* Input flow rate and temperature */}
         <Text
           position={[-0.9, 0.3, 0.31]}
           fontSize={0.025}
@@ -276,10 +276,19 @@ export const Cabinet3D = ({ cabinet }: Cabinet3DProps) => {
           anchorX="center"
           anchorY="middle"
         >
-          {`${cabinet.inputFlow.flowRate}L/min`}
+          {`${cabinet.inputFlow.flowRate.toFixed(1)}L/min`}
+        </Text>
+        <Text
+          position={[-0.9, 0.25, 0.31]}
+          fontSize={0.02}
+          color="#60a5fa"
+          anchorX="center"
+          anchorY="middle"
+        >
+          {`${cabinet.inputFlow.temperature.toFixed(1)}°C`}
         </Text>
         
-        {/* Output flow rate */}
+        {/* Output flow rate and temperature */}
         <Text
           position={[0.9, 0.3, 0.31]}
           fontSize={0.025}
@@ -287,7 +296,16 @@ export const Cabinet3D = ({ cabinet }: Cabinet3DProps) => {
           anchorX="center"
           anchorY="middle"
         >
-          {`${cabinet.outputFlow.flowRate}L/min`}
+          {`${cabinet.outputFlow.flowRate.toFixed(1)}L/min`}
+        </Text>
+        <Text
+          position={[0.9, 0.25, 0.31]}
+          fontSize={0.02}
+          color="#f87171"
+          anchorX="center"
+          anchorY="middle"
+        >
+          {`${cabinet.outputFlow.temperature.toFixed(1)}°C`}
         </Text>
         
         {/* Grid helper */}

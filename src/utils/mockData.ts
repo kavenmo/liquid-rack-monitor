@@ -87,12 +87,14 @@ export const generateMockData = (): MonitoringData => {
         flowRate: generateValueByAlert(45, inputFlowAlert, 0.2),
         pressure: generateValueByAlert(350, inputFlowAlert, 0.1),
         flowSpeed: generateValueByAlert(1.8, inputFlowAlert, 0.1),
+        temperature: generateValueByAlert(25, inputFlowAlert, 0.3), // 进液温度 ~25°C
         alertLevel: inputFlowAlert
       },
       outputFlow: {
         flowRate: generateValueByAlert(44, outputFlowAlert, 0.2),
         pressure: generateValueByAlert(280, outputFlowAlert, 0.1),
         flowSpeed: generateValueByAlert(1.7, outputFlowAlert, 0.1),
+        temperature: generateValueByAlert(35, outputFlowAlert, 0.3), // 出液温度 ~35°C
         alertLevel: outputFlowAlert
       },
       cabinetTemperature: generateValueByAlert(28, tempAlert, 0.3),
