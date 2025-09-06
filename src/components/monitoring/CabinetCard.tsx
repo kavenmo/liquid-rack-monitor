@@ -106,6 +106,13 @@ export const CabinetCard = ({ cabinet }: CabinetCardProps) => {
               alertLevel={cabinet.inputFlow.alertLevel}
               icon={<Activity className="w-3 h-3" />}
             />
+            <MetricCard
+              title="进液温度"
+              value={cabinet.inputFlow.temperature}
+              unit="°C"
+              alertLevel={cabinet.inputFlow.alertLevel}
+              icon={<Thermometer className="w-3 h-3" />}
+            />
           </MetricGroup>
 
           <MetricGroup title="出液指标" alertLevel={cabinet.outputFlow.alertLevel}>
@@ -130,6 +137,13 @@ export const CabinetCard = ({ cabinet }: CabinetCardProps) => {
               unit="m/s"
               alertLevel={cabinet.outputFlow.alertLevel}
               icon={<Activity className="w-3 h-3" />}
+            />
+            <MetricCard
+              title="出液温度"
+              value={cabinet.outputFlow.temperature}
+              unit="°C"
+              alertLevel={cabinet.outputFlow.alertLevel}
+              icon={<Thermometer className="w-3 h-3" />}
             />
           </MetricGroup>
         </div>
