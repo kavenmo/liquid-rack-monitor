@@ -165,7 +165,7 @@ const CabinetFrame = () => {
 };
 
 export const Cabinet3D = ({ cabinet }: Cabinet3DProps) => {
-  const servers = cabinet.servers.slice(0, 8); // 显示8台服务器
+  const servers = cabinet.servers.slice(0, 4); // 显示4台服务器
   
   return (
     <div className="w-full h-96 bg-monitor-surface border border-monitor-border rounded-lg overflow-hidden relative">
@@ -199,8 +199,8 @@ export const Cabinet3D = ({ cabinet }: Cabinet3DProps) => {
         {/* Servers arranged horizontally with gaps */}
         {servers.map((server, index) => {
           // Calculate position along the length (X-axis) with gaps for liquid immersion
-          // Start from left (-0.7) and space servers every 0.2m with gaps
-          const xPos = -0.7 + (index * 0.2);
+          // 4 servers spread across 2m length with gaps: positions at -0.6, -0.2, 0.2, 0.6
+          const xPos = -0.6 + (index * 0.4);
           const yPos = -0.18; // Slightly above liquid level
           const zPos = 0; // Center depth
           
